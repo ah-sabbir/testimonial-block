@@ -16,24 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Registers the custom Testimonial Gutenberg block.
  */
-function testimonial_block_register_block() {
-    wp_register_script(
-        'testimonial-block-editor',
-        plugin_dir_url( __FILE__ ) . 'src/index.js',
-        array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' ),
-        filemtime( plugin_dir_path( __FILE__ ) . 'src/index.js' ) // Ensures cache busting
-    );
-
-    wp_register_style(
-        'testimonial-block-style',
-        plugin_dir_url( __FILE__ ) . 'src/style.css',
-        array(),
-        filemtime( plugin_dir_path( __FILE__ ) . 'src/style.css' )
-    );
-
-    register_block_type( 'custom/testimonial', array(
-        'editor_script' => 'testimonial-block-editor',
-        'style'         => 'testimonial-block-style',
-    ) );
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
 }
-add_action( 'init', 'testimonial_block_register_block' );
+
+function create_block_testimonial_block_block_init() {
+	register_block_type( __DIR__ . '/build/testimonial-block' );
+}
+add_action( 'init', 'create_block_testimonial_block_block_init' );

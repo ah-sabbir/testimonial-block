@@ -14,7 +14,10 @@
 }
 
 .testimonial-block img {
-  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
   margin-left: 20px;
 }
 
